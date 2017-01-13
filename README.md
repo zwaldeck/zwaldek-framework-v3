@@ -3,13 +3,13 @@
 ## Current version: Pre-Alpha 0.0.1
 
 ### Doing at the moment
-- Autoloading classes
+- XML Configs
+- Service container
 
 ### Current Features
-
+- Autoloading classes
 
 ### Future Features
-- XML Configs
 - Dependency Injection
 - Routing
 - Plugins (so you can write a plugin and activate it (like bundles in Symfony))
