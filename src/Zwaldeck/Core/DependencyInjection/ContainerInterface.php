@@ -9,7 +9,7 @@ use Zwaldeck\Core\Util\Freezable;
 interface ContainerInterface extends Freezable
 {
     //services
-    public function addService(string $name, Service $service): void;
+    public function addService(string $name, $service): void;
     public function getService(string $name);
     public function getServices() : array;
     public function hasService(string $name): bool;

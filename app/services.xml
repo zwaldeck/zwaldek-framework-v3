@@ -1,0 +1,29 @@
+<di>
+    <parameters>
+        <param name="param1">param value 1</param>
+        <param name="param2">param value 2</param>
+    </parameters>
+
+    <services>
+        <service name="service2" class="Zwaldeck\TMP\Service2">
+            <con-arg>arg1</con-arg>
+            <con-arg>
+                <parameter>param1</parameter>
+            </con-arg>
+            <con-arg>
+                <link-to-service>service1</link-to-service>
+            </con-arg>
+        </service>
+
+        <service name="service1" class="Zwaldeck\TMP\Service1">
+            <con-arg>arg1</con-arg>
+            <con-arg>
+                <array>
+                    <element key="key1">value1</element>
+                    <element key="key2">value2</element>
+                    <element>value2</element>
+                </array>
+            </con-arg>
+        </service>
+    </services>
+</di>

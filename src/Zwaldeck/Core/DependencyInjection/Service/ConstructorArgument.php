@@ -6,12 +6,12 @@ namespace Zwaldeck\Core\DependencyInjection\Service;
 class ConstructorArgument
 {
     /**
-     * @var ConstructorArgumentType
+     * @var string
      */
     private $type;
 
     /**
-     * @var string
+     * @var mixed
      */
     private $argument;
 
@@ -20,14 +20,18 @@ class ConstructorArgument
      * @param $type
      * @param $argument
      */
-    public function __construct(ConstructorArgumentType $type, string $argument)
+    public function __construct(string $type, $argument)
     {
+        if(!ConstructorArgumentType::validType($type)) {
+            throw new \InvalidArgumentException("The constructor argument type '{$type}' is not a valid type!");
+        }
+
         $this->type = $type;
         $this->argument = $argument;
     }
 
     /**
-     * @return ConstructorArgumentType
+     * @return string
      */
     public function getType()
     {
@@ -35,7 +39,7 @@ class ConstructorArgument
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getArgument()
     {

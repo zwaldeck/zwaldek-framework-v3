@@ -41,9 +41,9 @@ class Container implements ContainerInterface
 
     /**
      * @param string $name
-     * @param Service $service
+     * @param $service
      */
-    public function addService(string $name, Service $service): void
+    public function addService(string $name, $service): void
     {
         if (!$this->frozen) {
             $this->services[$name] = $service;

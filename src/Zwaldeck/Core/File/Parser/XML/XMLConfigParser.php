@@ -14,5 +14,6 @@ class XMLConfigParser extends ConfigParser
     public function parse()
     {
         $this->config = json_decode(json_encode($this->content), true);
+        $this->disposeContent();
     }
 }

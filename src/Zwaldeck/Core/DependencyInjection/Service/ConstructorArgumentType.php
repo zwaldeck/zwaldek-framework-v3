@@ -8,7 +8,19 @@ namespace Zwaldeck\Core\DependencyInjection\Service;
  */
 abstract class ConstructorArgumentType
 {
-    const PLAIN = 1;
-    const PARAMETER = 2;
-    const SERVICE = 3;
+    const PLAIN = 'PLAIN';
+    const PARAMETER = 'PARAMETER';
+    const SERVICE = 'SERVICE';
+    const ARRAY = 'ARRAY';
+
+    public static function validType(string $type) {
+        $types = [
+            'PLAIN',
+            'PARAMETER',
+            'SERVICE',
+            'ARRAY'
+        ];
+
+        return in_array($type, $types);
+    }
 }

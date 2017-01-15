@@ -1,3 +1,5 @@
 700 --> FileNotFound
 701 --> ServiceNotFound
 702 --> ParameterNotFound
+703 --> InvalidXMLFormat
+704 --> ServiceLoaderException
