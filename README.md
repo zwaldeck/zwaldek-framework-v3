@@ -3,16 +3,16 @@
 ## Current version: Pre-Alpha 0.0.1
 
 ### Doing at the moment
-- XML Configs
-- Service container
+- Dependency Injection (Still need to load in services)
+- Plugins (so you can write a plugin and activate it (like bundles in Symfony))
 
 ### Current Features
 - Autoloading classes
+- XML Configs
+- Service container
 
 ### Future Features
-- Dependency Injection
 - Routing
-- Plugins (so you can write a plugin and activate it (like bundles in Symfony))
 - Templating Engine
 - Database Adapter
 - Query builder

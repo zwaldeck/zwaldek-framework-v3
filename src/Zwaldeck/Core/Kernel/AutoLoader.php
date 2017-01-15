@@ -24,7 +24,7 @@ class AutoLoader
      * @param string $class
      * @throws \Exception
      */
-    public function autoLoad(string $class): void {
+    public function autoLoad(string $class) {
         $class = str_replace('\\', '/', $class);
         $file = $this->rootDir."/../src/".$class.".php";
 

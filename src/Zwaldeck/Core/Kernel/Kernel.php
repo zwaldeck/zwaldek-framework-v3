@@ -1,6 +1,8 @@
 <?php
 
 namespace Zwaldeck\Core\Kernel;
+use Zwaldeck\Core\File\Parser\XML\XMLConfigParser;
+use Zwaldeck\Core\File\XmlFileLoader;
 use Zwaldeck\Core\Http\Request;
 use Zwaldeck\Core\Http\Response;
 
@@ -38,11 +40,17 @@ abstract class Kernel implements KernelInterface
     protected $booted;
 
     /**
+     * @var array
+     */
+    protected $config;
+
+    /**
      * Kernel constructor.
      */
     public function __construct(string $rootDir, string $env, bool $debug)
     {
         $this->plugins = [];
+        $this->config = [];
         $this->rootDir = $rootDir;
         $this->env = $env;
         $this->debug = $debug;
@@ -52,7 +60,7 @@ abstract class Kernel implements KernelInterface
     public function boot(): void
     {
         if(!$this->booted) {
-
+            $this->loadConfig();
         }
     }
 
@@ -64,6 +72,18 @@ abstract class Kernel implements KernelInterface
         return $this->rootDir;
     }
 
+    /**
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function handleRequest(Request $request): Response
     {
         if(!$this->booted) {
@@ -71,6 +91,14 @@ abstract class Kernel implements KernelInterface
         }
 
         // TODO: Implement handleRequest() method.
+    }
+
+    private function loadConfig() {
+        $fileLoader = new XmlFileLoader();
+        $fileLoader->loadFile($this->rootDir.'/../app/config.xml');
+        $configParser = new XMLConfigParser($fileLoader->getContent());
+        $configParser->parse();
+        $this->config = $configParser->getConfig();
     }
 
 

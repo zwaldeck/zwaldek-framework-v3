@@ -11,7 +11,10 @@ $autoLoader = new AutoLoader();
 
 require_once "../app/UserKernel.php";
 $kernel = new UserKernel($autoLoader->getRootDir(), "dev", true);
+$kernel->boot();
 
-$request = new Request();
-$response =  $kernel->handleRequest($request);
-$response->send();
+var_dump($kernel->getConfig());die;
+
+//$request = new Request();
+//$response =  $kernel->handleRequest($request);
+//$response->send();
