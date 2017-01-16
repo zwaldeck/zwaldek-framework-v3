@@ -3,16 +3,16 @@
 ## Current version: Pre-Alpha 0.0.1
 
 ### Doing at the moment
-- Plugins (so you can write a plugin and activate it (like bundles in Symfony))
+- Routing
 
 ### Current Features
 - Autoloading classes
 - XML Configs
 - Service container
 - Dependency Injection
+- Plugins
 
 ### Future Features
-- Routing
 - Templating Engine
 - Database Adapter
 - Query builder

@@ -9,6 +9,8 @@ use Zwaldeck\Core\File\Parser\XML\XMLServiceParser;
 use Zwaldeck\Core\File\XmlFileLoader;
 use Zwaldeck\Core\Http\Request;
 use Zwaldeck\Core\Http\Response;
+use Zwaldeck\Core\Plugin\Plugin;
+use Zwaldeck\Core\Plugin\PluginManager;
 
 /**
  * Class Kernel
@@ -19,9 +21,9 @@ abstract class Kernel implements KernelInterface
     const VERSION = "Pre-Alpha 0.0.1";
 
     /**
-     * @var array
+     * @var PluginManager
      */
-    protected $plugins;
+    protected $pluginManager;
 
     /**
      * @var string
@@ -58,7 +60,7 @@ abstract class Kernel implements KernelInterface
      */
     public function __construct(string $rootDir, string $env, bool $debug)
     {
-        $this->plugins = [];
+        $this->pluginManager = null;
         $this->config = [];
         $this->rootDir = $rootDir;
         $this->env = $env;
@@ -71,6 +73,8 @@ abstract class Kernel implements KernelInterface
     {
         if(!$this->booted) {
             $this->container = new Container();
+
+            $this->pluginManager = new PluginManager($this->loadPlugins());
 
             $this->loadConfig();
 
@@ -121,23 +125,23 @@ abstract class Kernel implements KernelInterface
 
     private function loadServices() {
         //TODO change to work with plugins
-        $fileLoader = new XmlFileLoader();
-        $fileLoader->loadFile($this->rootDir.'/../app/services.xml');
-        $serviceParser = new XMLServiceParser($fileLoader->getContent());
-        $serviceParser->parse();
 
-        foreach ($serviceParser->getParameters() as $name => $value) {
+        $parameters = [];
+        $servicesToLoad = [];
+        /** @var Plugin $plugin */
+        foreach ($this->pluginManager->getPlugins() as $plugin) {
+            $servicesToLoad = array_merge($servicesToLoad, $plugin->getServiceParser()->getServices());
+            $parameters = array_merge($parameters, $plugin->getServiceParser()->getParameters());
+        }
+
+        foreach ($parameters as $name => $value) {
             $this->container->addParameter($name, $value);
         }
 
-        $serviceLoader = new ServiceLoader($serviceParser->getServices());
+        $serviceLoader = new ServiceLoader($servicesToLoad);
         $serviceLoader->loadServices($this->container);
+
         $this->container->freeze();
-
-        $fileLoader = null;
-        $serviceParser = null;
-        $serviceLoader = null;
-
 
         var_dump($this->container->getParameters());
         var_dump($this->container->getServices());

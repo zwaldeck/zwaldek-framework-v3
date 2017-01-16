@@ -4,8 +4,9 @@ use Zwaldeck\Core\Kernel\Kernel;
 
 class UserKernel extends Kernel
 {
-    public function loadPlugins()
+    public function loadPlugins(): array
     {
-        //$this->plugins[] = every plugin base class
+        $plugins = [];
+        //$plugins[] = every plugin base class
     }
 }
