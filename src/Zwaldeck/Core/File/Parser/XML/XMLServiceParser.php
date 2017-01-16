@@ -14,20 +14,9 @@ class XMLServiceParser extends ServiceParser
 
     public function parse()
     {
-        $this->checkXMLSyntax();
         $this->parseParameters();
         $this->parseServices();
         $this->disposeContent();
-    }
-
-    private function checkXMLSyntax() {
-        if(empty($this->content->services)) {
-            throw new InvalidXMLFormatException('You need the tag <services> into your XML!');
-        }
-
-        if(empty($this->content->parameters)) {
-            throw new InvalidXMLFormatException('You need the tag <parameters> into your XML!');
-        }
     }
 
     private function parseParameters() {
