@@ -145,6 +145,7 @@ abstract class Kernel implements KernelInterface
 
         var_dump($this->container->getParameters());
         var_dump($this->container->getServices());
+        var_dump($this->pluginManager->getPlugins());
     }
 
 }

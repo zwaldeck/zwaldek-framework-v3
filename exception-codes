@@ -3,3 +3,4 @@
 702 --> ParameterNotFound
 703 --> InvalidXMLFormat
 704 --> ServiceLoaderException
+705 --> PluginException

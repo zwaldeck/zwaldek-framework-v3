@@ -5,7 +5,7 @@
     </parameters>
 
     <services>
-        <service name="service2" class="Zwaldeck\TMP\Service2">
+        <service name="service2" class="Zwaldeck\Plugins\FrameworkPlugin\TMP\Service2">
             <con-arg>arg1</con-arg>
             <con-arg>
                 <parameter>param1</parameter>
@@ -15,7 +15,7 @@
             </con-arg>
         </service>
 
-        <service name="service1" class="Zwaldeck\TMP\Service1">
+        <service name="service1" class="Zwaldeck\Plugins\FrameworkPlugin\TMP\Service1">
             <con-arg>arg1</con-arg>
             <con-arg>
                 <array>

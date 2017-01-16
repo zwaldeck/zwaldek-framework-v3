@@ -1,6 +1,6 @@
 <?php
 
-namespace Zwaldeck\TMP;
+namespace Zwaldeck\Plugins\FrameworkPlugin\TMP;
 
 
 class Service1
@@ -14,3 +14,4 @@ class Service1
         $this->arg2 = $arg2;
     }
 }
+use Zwaldeck\Plugins\FrameworkPlugin\FrameworkPlugin;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zwaldeck\TMP;
+namespace Zwaldeck\Plugins\FrameworkPlugin\TMP;
 
 
 class Service2
