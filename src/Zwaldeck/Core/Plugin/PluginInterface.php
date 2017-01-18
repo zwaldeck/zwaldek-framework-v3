@@ -2,6 +2,7 @@
 namespace Zwaldeck\Core\Plugin;
 
 use Zwaldeck\Core\File\Parser\ServiceParser;
+use Zwaldeck\Plugins\FrameworkPlugin\Router\Parser\RouteParser;
 
 /**
  * Interface PluginInterface
@@ -13,6 +14,6 @@ interface PluginInterface
     public function getName(): string;
     public function getNamespace(): string;
     public function getPath(): string;
-    public function getServiceParser(): ServiceParser;
-    public function getRouterParser();
+    public function getServiceParser(): ?ServiceParser;
+    public function getRouteParser(): ?RouteParser;
 }

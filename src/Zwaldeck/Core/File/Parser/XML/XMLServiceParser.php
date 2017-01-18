@@ -20,8 +20,8 @@ class XMLServiceParser extends ServiceParser
     }
 
     private function parseParameters() {
-        if(!empty($this->content->parameters->param)) {
-            foreach ($this->content->parameters->param as $paramElement) {
+        if(!empty($this->content->parameters) && !empty($this->content->parameters->children())) {
+            foreach ($this->content->parameters->children() as $paramElement) {
                 if($paramElement['name'] == null) {
                     throw new InvalidXMLFormatException('The <param> tag needs to have the attribute \'name\'!');
                 }
@@ -32,8 +32,8 @@ class XMLServiceParser extends ServiceParser
     }
 
     private function parseServices() {
-        if(!empty($this->content->services->service)) {
-            foreach ($this->content->services->service as $serviceElement) {
+        if(!empty($this->content->services) && !empty($this->content->services->children())) {
+            foreach ($this->content->services->children() as $serviceElement) {
                 if($serviceElement['name'] == null) {
                     throw new InvalidXMLFormatException('The <service> tag needs to have the attribute \'name\'!');
                 }

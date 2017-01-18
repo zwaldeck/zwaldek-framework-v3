@@ -74,11 +74,10 @@ abstract class Kernel implements KernelInterface
         if(!$this->booted) {
             $this->container = new Container();
 
-            $this->pluginManager = new PluginManager($this->loadPlugins());
+            $this->pluginManager = PluginManager::getInstance($this->loadPlugins());
 
             $this->loadConfig();
 
-            //TODO before loading services we need to load in all the plugins
             $this->loadServices();
         }
     }
@@ -103,13 +102,13 @@ abstract class Kernel implements KernelInterface
      * @param Request $request
      * @return Response
      */
-    public function handleRequest(Request $request): Response
+    public function handleRequest(Request $request): ?Response
     {
         if(!$this->booted) {
             $this->boot();
         }
 
-        // TODO: Implement handleRequest() method.
+        return $this->container->getService('zwaldeck.router')->dispatch($request);
     }
 
     private function loadConfig() {
@@ -124,14 +123,15 @@ abstract class Kernel implements KernelInterface
     }
 
     private function loadServices() {
-        //TODO change to work with plugins
-
         $parameters = [];
         $servicesToLoad = [];
         /** @var Plugin $plugin */
         foreach ($this->pluginManager->getPlugins() as $plugin) {
-            $servicesToLoad = array_merge($servicesToLoad, $plugin->getServiceParser()->getServices());
-            $parameters = array_merge($parameters, $plugin->getServiceParser()->getParameters());
+            $serviceParser = $plugin->getServiceParser();
+            if($serviceParser !== null) {
+                $servicesToLoad = array_merge($servicesToLoad, $serviceParser->getServices());
+                $parameters = array_merge($parameters, $serviceParser->getParameters());
+            }
         }
 
         foreach ($parameters as $name => $value) {
@@ -143,9 +143,7 @@ abstract class Kernel implements KernelInterface
 
         $this->container->freeze();
 
-        var_dump($this->container->getParameters());
-        var_dump($this->container->getServices());
-        var_dump($this->pluginManager->getPlugins());
+//        var_dump($this->container->getService('zwaldeck.router'));
     }
 
 }

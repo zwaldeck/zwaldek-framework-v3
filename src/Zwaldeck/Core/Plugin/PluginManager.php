@@ -9,6 +9,20 @@ use Zwaldeck\Core\Exceptions\PluginException;
  */
 class PluginManager
 {
+    private static $instance = null;
+
+    /**
+     * @param array $plugins
+     * @return null|PluginManager
+     */
+    public static function getInstance(array $plugins = []): ?PluginManager {
+        if(!empty($plugins) && self::$instance === null) {
+            self::$instance = new PluginManager($plugins);
+        }
+
+        return self::$instance;
+    }
+
     /**
      * @var array
      */
@@ -19,7 +33,7 @@ class PluginManager
      * @param array $plugins
      * @throws PluginException
      */
-    public function __construct(array $plugins)
+    private function __construct(array $plugins)
     {
         $this->plugins = [];
 

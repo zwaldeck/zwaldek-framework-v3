@@ -3,6 +3,7 @@
 namespace Zwaldeck\Core\Kernel;
 
 use Zwaldeck\Core\Http\Request;
+use Zwaldeck\Core\Http\Response;
 
 /**
  * Interface KernelInterface
@@ -10,8 +11,8 @@ use Zwaldeck\Core\Http\Request;
  */
 interface KernelInterface
 {
-    public function loadPlugins();
-    public function boot();
-    public function getRootDir();
-    public function handleRequest(Request $request);
+    public function loadPlugins(): array ;
+    public function boot(): void;
+    public function getRootDir(): string ;
+    public function handleRequest(Request $request): ?Response;
 }

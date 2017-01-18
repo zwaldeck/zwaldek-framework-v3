@@ -4,3 +4,7 @@
 703 --> InvalidXMLFormat
 704 --> ServiceLoaderException
 705 --> PluginException
+706 --> ControllerNotFoundException
+707 --> InvalidControllerClassException
+708 --> ActionNotFoundException
+709 --> InvalidActionException

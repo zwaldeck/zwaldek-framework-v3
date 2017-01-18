@@ -16,8 +16,7 @@ class AutoLoader
     public function __construct()
     {
         spl_autoload_register(array($this, "autoLoad"));
-        $this->rootDir = getcwd();
-
+        $this->rootDir = ROOT_DIR;
     }
 
     /**
