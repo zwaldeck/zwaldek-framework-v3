@@ -8,3 +8,5 @@
 707 --> InvalidControllerClassException
 708 --> ActionNotFoundException
 709 --> InvalidActionException
+
+720 --> QueryBuilderException

@@ -1,9 +1,17 @@
 # zwaldek-framework-v3
 
+This is a modular MVC framework, with a Plugin system so you can choose what to use and what not to use.
+
+###Info
+ - Non mongo databases should be compatible by PDO
+ - Currently we do not support MongoDB yet
+
+
 ## Current version: Pre-Alpha 0.0.1
 
 ### Doing at the moment
-- Routing
+- Database Adapter
+- Query builder
 
 ### Current Features
 - Autoloading classes
@@ -11,11 +19,10 @@
 - Service container
 - Dependency Injection
 - Plugins
+- Routing
 
 ### Future Features
 - Templating Engine
-- Database Adapter
-- Query builder
 - ORM
 - Form API
 - Session API (session & cookie)
